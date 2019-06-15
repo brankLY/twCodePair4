@@ -47,4 +47,9 @@ public class gameServiceImplement implements gameService{
     public boolean[][] next(){
         return matrix;
     }
+
+    public boolean change(int x, int y){
+        boolean nextState = false;
+        return nextState;
+    }
 }

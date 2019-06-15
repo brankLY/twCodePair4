@@ -11,4 +11,6 @@ public interface gameService {
     boolean[][] instantiateByChoose(int chooseNumer);
 
     boolean[][] next();
+
+    boolean change(int x, int y);
 }
