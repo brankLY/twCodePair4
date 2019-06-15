@@ -1,11 +1,7 @@
-package com.tw.example.service;
+package com.tw.example.demo4.service;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
-import sun.print.resources.serviceui;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.verify;
@@ -14,7 +10,7 @@ import static org.mockito.Mockito.verify;
 public class gameServiceImplementTest {
 	int x = 3;
 	int y = 3;
-	gameServiceImplement service = new gameServiceImplement();
+	GameServiceImplement service = new GameServiceImplement();
 	@Before
 	public void should_init_matrix() throws Exception {
 		assertThat(service.init(x,y)).isNotEmpty();
@@ -59,8 +55,8 @@ public class gameServiceImplementTest {
 
 	}
 
-	@Test
-	public void should_return_next() throws Exception{
-		assertThat(service.next()).isNotEmpty();
-	}
+//	@Test
+//	public void should_return_next() throws Exception{
+//		assertThat(service.next()).isNotEmpty();
+//	}
 }

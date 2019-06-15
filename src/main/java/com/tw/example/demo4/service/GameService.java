@@ -1,6 +1,6 @@
-package com.tw.example.service;
+package com.tw.example.demo4.service;
 
-public interface gameService {
+public interface GameService {
 
     boolean[][] init(int row, int col);
 

@@ -1,10 +1,13 @@
-package com.tw.example.service;
+package com.tw.example.demo4.service;
 
-public class gameServiceImplement implements gameService{
+import org.springframework.stereotype.Service;
+
+@Service
+public class GameServiceImplement implements GameService {
     private boolean[][] matrix = {};
 
     public boolean[][] init(int row, int col){
-      this.matrix = new boolean[row][col];
+      this.matrix = new boolean[row+2][col+2];
       return matrix;
     }
 
@@ -16,11 +19,16 @@ public class gameServiceImplement implements gameService{
     // 矩阵值为1，实例化matrix值为true
     // 矩阵值为其他，实例化matrix值为false
     public boolean[][] instantiate(int initNums[][]){
+        System.out.println("enter instantiate");
+        System.out.println("initNums is "+initNums);
         if(initNums == null || initNums[0] == null){
             return null;
         }
-        for(int i=0;i<initNums.length;i++){
-            for (int j=0;j<initNums[0].length;j++){
+        for(int i=1;i<initNums.length-1;i++){
+            for (int j=1;j<initNums[0].length-1;j++){
+                System.out.println("i:"+i);
+                System.out.println("j:"+j);
+                System.out.println(initNums[i][j]);
                 if(initNums[i][j] == 1){
                     this.matrix[i][j] = true;
                 }
@@ -45,10 +53,15 @@ public class gameServiceImplement implements gameService{
     }
 
     public boolean[][] next(){
+        for(int i=1;i<this.matrix.length-1;i++){
+            for (int j=1;j<this.matrix[0].length-1;j++){
+                this.matrix[i][j] = this.change(i,j);
+            }
+        }
         return matrix;
     }
 
-    public boolean change(int x, int y) throws Exception{
+    public boolean change(int x, int y){
         if(x<0 || x>this.matrix.length || y<0 || y>this.matrix[0].length) {
             throw new ArrayIndexOutOfBoundsException();
         }
