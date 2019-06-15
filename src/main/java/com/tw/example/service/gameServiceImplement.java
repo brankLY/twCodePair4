@@ -44,6 +44,30 @@ public class gameServiceImplement implements gameService{
         return matrix;
     }
 
+    public boolean[][] instantiateByTypicalform(String s){
+        int row = this.matrix.length;
+        int col = this.matrix[0].length;
+        for(int i=0;i<row;i++){
+            for (int j=0;j<col;j++){
+                this.matrix[i][j] = false;
+            }
+        }
+        if(s.equals("Exploder")){
+            this.matrix[9][9] = true;
+            this.matrix[9][11] = true;
+            this.matrix[9][13] = true;
+            this.matrix[10][9] = true;
+            this.matrix[10][13] = true;
+            this.matrix[11][9] = true;
+            this.matrix[11][13] = true;
+            this.matrix[12][9] = true;
+            this.matrix[12][13] = true;
+            this.matrix[13][9] = true;
+            this.matrix[13][11] = true;
+            this.matrix[13][13] = true;
+        }
+        return this.matrix;
+    }
 
     //transform true to 1，false to 0
     public int transform(boolean state){
