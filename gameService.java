@@ -4,9 +4,9 @@ public interface gameService {
 
     boolean [][]instantiate(int initNums[][]);
 
-    boolean [][]instantiate(int random);
+    boolean [][]instantiateByRandom(int random);
 
-    boolean [][]instantiate(int chooseNumer);
+    boolean [][]instantiateByChoose(int chooseNumer);
 
 }
 
