@@ -48,26 +48,65 @@ public class gameServiceImplement implements gameService{
         return matrix;
     }
 
-    public boolean change(int x, int y) throws Exception{
-        if(x<0 || x>this.matrix.length || y<0 || y>this.matrix[0].length) {
+    //transform true to 1，false to 0
+    public int transform(boolean state){
+        if (state) return 1;
+        else return 0;
+    }
+
+    //get the number of living cells around cell[x][y]
+    public int getLifeNum(int x, int y) throws Exception{
+        int row = this.matrix.length;
+        int col = this.matrix[0].length;
+
+        if(x<0 || x>row || y<0 || y>col) {
             throw new ArrayIndexOutOfBoundsException();
         }
+
+        int num = 0;
+        //左边
+        if(y!=0){
+            num+=transform(this.matrix[x][y-1]);
+        }
+        //左上角
+        if(x!=0&&y!=0){
+            num+=transform(this.matrix[x-1][y-1]);
+        }
+        //上边
+        if(x!=0){
+            num+=transform(this.matrix[x-1][y]);
+        }
+        //右上
+        if(y!=col-1&&x!=0){
+            num+=transform(this.matrix[x-1][y+1]);
+        }
+        //右边
+        if(y!=col-1){
+            num+=transform(this.matrix[x][y+1]);
+        }
+        //右下
+        if(y!=col-1&&x!=row-1){
+            num+=transform(this.matrix[x+1][y+1]);
+        }
+        //下边
+        if(x!=row-1){
+            num+=transform(this.matrix[x+1][y]);
+        }
+        //左下
+        if(y!=0&&x!=row-1){
+            num+=transform(this.matrix[x+1][y-1]);
+        }
+        return num;
+    }
+
+    //get the next state of cell[x][y]
+    public boolean getNextState(int x,int y){
+        int num = getLifeNum(x, y);
         boolean nextState = false;
-        int count = 0;
-        for (int i=x-1; i<=x+1; i++){
-            for (int j=y-1; j<=y+1; j++){
-                if(this.matrix[i][j]){
-                    count++;
-                }
-            }
-        }
-        if(this.matrix[x][y]){
-            count -= 1;
-        }
-        if (count == 3){
+        if (num == 3){
             nextState = true;
         }
-        else if(count == 2){
+        else if(num == 2){
             nextState = this.matrix[x][y];
         }
 
