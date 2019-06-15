@@ -1,11 +1,7 @@
 package com.tw.example.service;
 
 public class gameServiceImplement implements gameService{
-    public gameServiceImplement(boolean[][] matrix) {
-        this.matrix = matrix;
-    }
-
-    private boolean[][] matrix;
+    private boolean[][] matrix = {};
 
     public boolean[][] init(int row, int col){
       this.matrix = new boolean[row][col];
@@ -26,13 +22,14 @@ public class gameServiceImplement implements gameService{
         for(int i=0;i<initNums.length;i++){
             for (int j=0;j<initNums[0].length;j++){
                 if(initNums[i][j] == 1){
-                    matrix[i][j] = true;
-                }else {
-                    matrix[i][j] = false;
+                    this.matrix[i][j] = true;
                 }
-
             }
         }
+        return this.matrix;
+    }
+
+    public boolean[][] getMatrix() {
         return matrix;
     }
 
