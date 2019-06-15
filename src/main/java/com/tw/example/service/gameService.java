@@ -10,7 +10,7 @@ public interface gameService {
 
     boolean[][] instantiateByChoose(int chooseNumer);
 
-    boolean[][] next();
+    void next();
 
-    boolean change(int x, int y) throws Exception;
+    void start();
 }

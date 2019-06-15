@@ -44,9 +44,6 @@ public class gameServiceImplement implements gameService{
         return matrix;
     }
 
-    public boolean[][] next(){
-        return matrix;
-    }
 
     //transform true to 1，false to 0
     public int transform(boolean state){
@@ -100,16 +97,33 @@ public class gameServiceImplement implements gameService{
     }
 
     //get the next state of cell[x][y]
-    public boolean getNextState(int x,int y){
+    public boolean getNextState(int x,int y) {
         int num = getLifeNum(x, y);
         boolean nextState = false;
-        if (num == 3){
+        if (num == 3) {
             nextState = true;
-        }
-        else if(num == 2){
+        } else if (num == 2) {
             nextState = this.matrix[x][y];
         }
-
         return nextState;
+    }
+
+    public void next() {
+        int row = this.matrix.length;// 在哪设成全局变量？
+        int col = this.matrix[0].length;
+        boolean[][] nextMatrix = new boolean[row][col];
+        for (int i=0; i<row; i++){
+            for (int j=0; j<col; j++){
+                nextMatrix[i][j] = getNextState(i,j);
+            }
+        }
+        this.matrix = nextMatrix;
+    }
+    public void start(){
+        int T = 100;// the number of evolution
+        for(int i=0; i<T; i++){
+            next();
+            //add pause
+        }
     }
 }
