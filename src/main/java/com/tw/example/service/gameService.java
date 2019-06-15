@@ -12,5 +12,5 @@ public interface gameService {
 
     boolean[][] next();
 
-    boolean change(int x, int y);
+    boolean change(int x, int y) throws Exception;
 }

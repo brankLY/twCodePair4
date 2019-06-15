@@ -24,11 +24,16 @@ public class gameServiceImplementTest {
 		int initNums[][] = {{1,2,3},{
 			0,1,1},{
 			1,0,1}};
-		assertThat(service.instantiate(initNums)).isNotEmpty();
+		boolean[][] instantiateState = service.instantiate(initNums);
+		assertThat(instantiateState[0][0]).isEqualTo(true);
 	}
-
+    @Test
 	public void should_return_next_state() throws Exception{
-		boolean[][] current_state = service.getMatrix();
+		int initNums[][] = {{1,2,3},{
+			0,1,1},{
+			1,0,1}};
+		boolean[][] current_state = service.instantiate(initNums);
+		System.out.println(current_state[1][1]);
 		boolean nextState = false;
 		int x = 1;
 		int y = 1;

@@ -48,8 +48,29 @@ public class gameServiceImplement implements gameService{
         return matrix;
     }
 
-    public boolean change(int x, int y){
+    public boolean change(int x, int y) throws Exception{
+        if(x<0 || x>this.matrix.length || y<0 || y>this.matrix[0].length) {
+            throw new ArrayIndexOutOfBoundsException();
+        }
         boolean nextState = false;
+        int count = 0;
+        for (int i=x-1; i<=x+1; i++){
+            for (int j=y-1; j<=y+1; j++){
+                if(this.matrix[i][j]){
+                    count++;
+                }
+            }
+        }
+        if(this.matrix[x][y]){
+            count -= 1;
+        }
+        if (count == 3){
+            nextState = true;
+        }
+        else if(count == 2){
+            nextState = this.matrix[x][y];
+        }
+
         return nextState;
     }
 }
