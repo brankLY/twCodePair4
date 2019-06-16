@@ -2,6 +2,9 @@ package com.tw.example.demo4.service;
 
 import org.springframework.stereotype.Service;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 @Service
 public class GameServiceImplement implements GameService {
     private boolean[][] matrix = {};
@@ -58,6 +61,16 @@ public class GameServiceImplement implements GameService {
                 this.matrix[i][j] = this.change(i,j);
             }
         }
+        return matrix;
+    }
+
+    public boolean[][] start(){
+        this.matrix = this.next();
+        //add pause
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            public void run() {}
+            }, 1000);
         return matrix;
     }
 
